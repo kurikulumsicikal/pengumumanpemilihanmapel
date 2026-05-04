@@ -3,116 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PENGUMUMAN MAPEL | SMAN 1 CIKALONGWETAN</title>
+    <title>CEK MAPEL | SMAN 1 CIKALONGWETAN</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --gold: #d4af37; 
-            --dark-gold: #aa841e;
-            --black: #1a1a1a;
-            --white: #ffffff;
-        }
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: radial-gradient(circle, #2c2c2c 0%, #000000 100%); 
-            margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: var(--white);
-        }
-        .card { 
-            background: rgba(255, 255, 255, 0.05); 
-            width: 100%; max-width: 450px; border-radius: 30px; 
-            backdrop-filter: blur(10px); border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); overflow: hidden;
-        }
-        .header { 
-            background: linear-gradient(135deg, var(--black) 0%, #333 100%); 
-            padding: 40px 20px; text-align: center; border-bottom: 3px solid var(--gold);
-        }
+        :root { --primary: #0f172a; --accent: #38bdf8; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #cbd5e1; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .card { background: white; width: 100%; max-width: 400px; border-radius: 24px; box-shadow: 0 20px 25px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: var(--primary); padding: 30px 20px; color: white; text-align: center; border-bottom: 4px solid var(--accent); }
+        
+        /* Pengaturan Logo */
         .logo-sekolah { 
-            width: 80px; height: 80px; object-fit: contain; background: white; 
-            padding: 10px; border-radius: 20px; margin-bottom: 15px; border: 2px solid var(--gold);
+            width: 70px; 
+            height: 70px; 
+            object-fit: contain; 
+            background: white; 
+            padding: 8px; 
+            border-radius: 12px; 
+            margin-bottom: 15px;
+            display: inline-block;
         }
-        .header h1 { font-size: 20px; margin: 0; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
-        
-        /* TIMER STYLE */
-        #timer-container { padding: 20px; text-align: center; background: rgba(212, 175, 55, 0.1); margin: 15px; border-radius: 15px; border: 1px dashed var(--gold); }
-        .timer-text { font-size: 11px; color: var(--gold); font-weight: 800; margin-bottom: 10px; display: block; }
-        #countdown { font-size: 24px; font-weight: 800; color: var(--white); letter-spacing: 2px; }
 
-        .content { padding: 30px; }
-        input { 
-            width: 100%; padding: 18px; border: 1px solid var(--gold); border-radius: 15px; 
-            background: rgba(0,0,0,0.3); color: white; font-size: 16px; text-align: center; margin-bottom: 20px;
-        }
-        .btn-cek { 
-            width: 100%; background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%); 
-            color: var(--black); padding: 18px; border: none; border-radius: 15px; font-size: 16px; font-weight: 800; cursor: pointer;
-        }
-        
-        /* HASIL STYLE */
+        .header h1 { font-size: 18px; margin: 0; font-weight: 800; }
+        .content { padding: 30px 25px; }
+        input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; box-sizing: border-box; text-align: center; margin-bottom: 15px; outline: none; }
+        .btn-cek { width: 100%; background: var(--primary); color: white; padding: 16px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; }
         #hasil-wrapper { display: none; }
-        .info-siswa { background: rgba(255,255,255,0.1); border-radius: 20px; padding: 20px; margin-bottom: 20px; border-left: 5px solid var(--gold); }
-        .label { font-size: 10px; color: var(--gold); font-weight: 800; text-transform: uppercase; }
-        .value { font-size: 18px; font-weight: 700; margin-bottom: 15px; display: block; }
-        .mapel-item { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(212,175,55,0.2); display: flex; align-items: center; }
-        .mapel-item span { color: var(--gold); font-weight: 800; margin-right: 15px; }
+        .info-siswa { background: #f8fafc; border-radius: 15px; padding: 15px; margin-bottom: 20px; border: 1px solid #e2e8f0; }
+        .label { font-size: 10px; color: #94a3b8; font-weight: 800; text-transform: uppercase; display: block; }
+        .value { font-size: 16px; color: var(--primary); font-weight: 700; display: block; margin-bottom: 12px; }
+        .mapel-item { background: white; padding: 12px; border-radius: 10px; margin-bottom: 8px; border: 1px solid #e2e8f0; display: flex; align-items: center; font-size: 14px; font-weight: 700; color: #1e3a8a; }
+        .mapel-item span { background: var(--accent); color: var(--primary); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; margin-right: 12px; }
     </style>
 </head>
 <body>
 
 <div class="card">
     <div class="header">
-        <img src="logo.png" class="logo-sekolah" alt="Logo" onerror="this.style.display='none'">
-        <h1>HASIL PILIHAN MAPEL</h1>
-        <p style="font-size: 11px; color: #aaa; margin-top: 5px;">SMAN 1 CIKALONGWETAN</p>
+        <img src="logo.png" class="logo-sekolah" alt="Logo Sekolah" id="img-logo">
+        <h1>HASIL PEMILIHAN MAPEL</h1>
+        <p style="font-size: 11px; opacity: 0.7; margin-top: 5px;">SMAN 1 CIKALONGWETAN</p>
     </div>
-
-    <div id="timer-container">
-        <span class="timer-text">PENGUMUMAN DIBUKA DALAM:</span>
-        <div id="countdown">Loading...</div>
-    </div>
-
     <div class="content">
-        <div id="form-pencarian" style="display:none;">
-            <input type="text" id="nisn-siswa" placeholder="MASUKKAN NISN ANDA">
-            <button class="btn-cek" onclick="cekMapel()">CEK DATA SEKARANG</button>
+        <div id="form-pencarian">
+            <input type="text" id="nisn-siswa" placeholder="Masukkan 10 Digit NISN">
+            <button class="btn-cek" onclick="cekMapel()">LIHAT HASIL</button>
         </div>
-
         <div id="hasil-wrapper">
             <div class="info-siswa">
-                <span class="label">Nama Lengkap</span><span id="out-nama" class="value">-</span>
-                <span class="label">Kelas</span><span id="out-kelas" class="value">-</span>
+                <span class="label">Nama Lengkap</span>
+                <span id="out-nama" class="value">-</span>
+                <span class="label">Kelas Asal</span>
+                <span id="out-kelas" class="value">-</span>
             </div>
             <div id="out-mapel-list"></div>
-            <button class="btn-cek" style="background: #333; color: white; margin-top: 20px;" onclick="location.reload()">KEMBALI</button>
+            <button class="btn-cek" style="background:#64748b; margin-top:20px;" onclick="location.reload()">KEMBALI</button>
         </div>
     </div>
 </div>
 
 <script>
-    // ==========================================
-    // 1. ATUR WAKTU MUNDUR DI SINI
-    // Format: "Bulan Tanggal, Tahun Jam:Menit:Detik"
-    // ==========================================
-    const waktuTujuan = new Date("June 30, 2026 08:00:00").getTime();
-
-    const x = setInterval(function() {
-        const sekarang = new Date().getTime();
-        const selisih = waktuTujuan - sekarang;
-
-        const hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
-        const jam = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
-        const detik = Math.floor((selisih % (1000 * 60)) / 1000);
-
-        document.getElementById("countdown").innerHTML = hari + "j " + jam + "j " + menit + "m " + detik + "s ";
-
-        if (selisih < 0) {
-            clearInterval(x);
-            document.getElementById("timer-container").style.display = "none";
-            document.getElementById("form-pencarian").style.display = "block";
-        }
-    }, 1000);
-
     async function cekMapel() {
         const nisn = document.getElementById('nisn-siswa').value;
         const url = "https://script.google.com/macros/s/AKfycbyueUEVB9637tN4iH2GULYaca0mUaCryFLRmg5QcQi87xw8D8dOTsoqS9tr51dmkDgO/exec"; 
@@ -127,7 +76,8 @@
                 document.getElementById('out-kelas').innerText = data.kelas;
                 const listContainer = document.getElementById('out-mapel-list');
                 listContainer.innerHTML = ""; 
-                [data.p1, data.p2, data.p3, data.p4].forEach((item, index) => {
+                const daftarMapel = [data.p1, data.p2, data.p3, data.p4];
+                daftarMapel.forEach((item, index) => {
                     if(item) {
                         const div = document.createElement('div');
                         div.className = 'mapel-item';
@@ -136,8 +86,8 @@
                     }
                 });
                 document.getElementById('hasil-wrapper').style.display = "block";
-            } else { alert("Data tidak ditemukan."); }
-        } catch (e) { alert("Gangguan sistem."); }
+            } else { alert("NISN tidak ditemukan."); }
+        } catch (e) { alert("Gagal mengambil data."); }
     }
 </script>
 </body>
