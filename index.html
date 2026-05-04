@@ -7,42 +7,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #0f172a; --accent: #38bdf8; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #cbd5e1; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: white; width: 90%; max-width: 400px; border-radius: 20px; box-shadow: 0 15px 25px rgba(0,0,0,0.1); overflow: hidden; }
-        .header { background: var(--primary); padding: 25px; color: white; text-align: center; border-bottom: 4px solid var(--accent); }
-        .header h1 { font-size: 18px; margin: 0; }
-        .content { padding: 25px; }
-        input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 16px; box-sizing: border-box; text-align: center; margin-bottom: 15px; }
-        .btn-cek { width: 100%; background: var(--primary); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #cbd5e1; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        
+        .card { background: white; width: 100%; max-width: 400px; border-radius: 24px; box-shadow: 0 20px 25px rgba(0,0,0,0.1); overflow: hidden; }
+        
+        .header { background: var(--primary); padding: 30px 20px; color: white; text-align: center; border-bottom: 4px solid var(--accent); }
+        
+        /* PENGATURAN LOGO AGAR TIDAK KACAU */
+        .logo-sekolah { 
+            width: 70px; /* Mengunci lebar gambar */
+            height: 70px; /* Mengunci tinggi gambar */
+            object-fit: contain; /* Memastikan gambar tidak gepeng */
+            background: white; 
+            padding: 8px; 
+            border-radius: 12px; 
+            margin-bottom: 15px;
+        }
+
+        .header h1 { font-size: 18px; margin: 0; font-weight: 800; letter-spacing: 0.5px; }
+        .content { padding: 30px 25px; }
+        
+        input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; box-sizing: border-box; text-align: center; margin-bottom: 15px; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--accent); }
+        
+        .btn-cek { width: 100%; background: var(--primary); color: white; padding: 16px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .btn-cek:hover { opacity: 0.9; }
+
         #hasil-wrapper { display: none; }
-        .info-siswa { background: #f8fafc; border-radius: 12px; padding: 15px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
-        .label { font-size: 10px; color: #94a3b8; font-weight: 800; text-transform: uppercase; display: block; }
-        .value { font-size: 16px; color: var(--primary); font-weight: 700; display: block; margin-bottom: 8px; }
-        .mapel-item { background: white; padding: 10px; border-radius: 8px; margin-bottom: 6px; border: 1px solid #e2e8f0; display: flex; align-items: center; font-size: 14px; font-weight: 700; color: #1e3a8a; }
-        .mapel-item span { background: var(--accent); color: var(--primary); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; margin-right: 10px; }
+        .info-siswa { background: #f8fafc; border-radius: 15px; padding: 15px; margin-bottom: 20px; border: 1px solid #e2e8f0; }
+        .label { font-size: 10px; color: #94a3b8; font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 2px; }
+        .value { font-size: 16px; color: var(--primary); font-weight: 700; display: block; margin-bottom: 12px; }
+        
+        .mapel-item { background: white; padding: 12px; border-radius: 10px; margin-bottom: 8px; border: 1px solid #e2e8f0; display: flex; align-items: center; font-size: 14px; font-weight: 700; color: #1e3a8a; }
+        .mapel-item span { background: var(--accent); color: var(--primary); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; margin-right: 12px; flex-shrink: 0; }
     </style>
 </head>
 <body>
 
 <div class="card">
     <div class="header">
+        <img src="logo.png" class="logo-sekolah" alt="Logo" onerror="this.style.display='none'">
         <h1>HASIL PEMILIHAN MAPEL</h1>
-        <p style="font-size: 10px; opacity: 0.7; margin-top: 5px;">SMAN 1 CIKALONGWETAN</p>
+        <p style="font-size: 11px; opacity: 0.7; margin-top: 5px;">SMAN 1 CIKALONGWETAN</p>
     </div>
     <div class="content">
         <div id="form-pencarian">
-            <input type="text" id="nisn-siswa" placeholder="Masukkan NISN">
-            <button class="btn-cek" onclick="cekMapel()">CEK HASIL</button>
+            <input type="text" id="nisn-siswa" placeholder="Masukkan 10 Digit NISN">
+            <button class="btn-cek" onclick="cekMapel()">LIHAT HASIL PILIHAN</button>
         </div>
+        
         <div id="hasil-wrapper">
             <div class="info-siswa">
-                <span class="label">Nama Siswa</span>
+                <span class="label">Nama Lengkap</span>
                 <span id="out-nama" class="value">-</span>
-                <span class="label">Kelas</span>
+                <span class="label">Kelas Asal</span>
                 <span id="out-kelas" class="value">-</span>
             </div>
             <div id="out-mapel-list"></div>
-            <button class="btn-cek" style="background:#64748b; margin-top:15px;" onclick="location.reload()">KEMBALI</button>
+            <button class="btn-cek" style="background:#64748b; margin-top:20px;" onclick="location.reload()">KEMBALI</button>
         </div>
     </div>
 </div>
@@ -52,29 +74,39 @@
         const nisn = document.getElementById('nisn-siswa').value;
         const url = "https://script.google.com/macros/s/AKfycbyueUEVB9637tN4iH2GULYaca0mUaCryFLRmg5QcQi87xw8D8dOTsoqS9tr51dmkDgO/exec"; 
 
-        if (!nisn) { alert("Isi NISN dulu!"); return; }
+        if (!nisn) { alert("Silakan isi NISN!"); return; }
+        
         try {
             const response = await fetch(url + "?nisn=" + nisn);
             const data = await response.json();
+            
             if (data.status === "DITEMUKAN") {
                 document.getElementById('form-pencarian').style.display = "none";
                 document.getElementById('out-nama').innerText = data.nama;
                 document.getElementById('out-kelas').innerText = data.kelas;
+                
                 const listContainer = document.getElementById('out-mapel-list');
                 listContainer.innerHTML = ""; 
+                
                 const daftarMapel = [data.p1, data.p2, data.p3, data.p4];
                 daftarMapel.forEach((item, index) => {
-                    if(item) {
+                    if(item && item !== "") {
                         const div = document.createElement('div');
                         div.className = 'mapel-item';
                         div.innerHTML = `<span>${index + 1}</span> ${item}`;
                         listContainer.appendChild(div);
                     }
                 });
+                
                 document.getElementById('hasil-wrapper').style.display = "block";
-            } else { alert("Maaf, NISN tidak ditemukan."); }
-        } catch (e) { alert("Sistem sedang sibuk."); }
+            } else {
+                alert("Data NISN tidak ditemukan.");
+            }
+        } catch (e) {
+            alert("Terjadi gangguan koneksi.");
+        }
     }
 </script>
+
 </body>
 </html>
