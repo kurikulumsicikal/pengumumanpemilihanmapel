@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HASIL PILIHAN MAPEL | SMAN 1 CIKALONGWETAN</title>
+    <title>PENGUMUMAN MAPEL | SMAN 1 CIKALONGWETAN</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -33,25 +33,16 @@
         }
         .header h1 { font-size: 18px; margin: 0; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-weight: 800; }
         
-        /* TIMER STYLE */
-        #timer-container { padding: 20px; text-align: center; background: rgba(212, 175, 55, 0.1); margin: 15px; border-radius: 15px; border: 1px dashed var(--gold); }
-        .timer-text { font-size: 10px; color: var(--gold); font-weight: 800; margin-bottom: 10px; display: block; letter-spacing: 1px; }
-        #countdown { font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: 1px; }
-
         .content { padding: 30px; }
         input { 
             width: 100%; padding: 18px; border: 1px solid var(--gold); border-radius: 15px; 
             background: rgba(0,0,0,0.4); color: white; font-size: 16px; text-align: center; margin-bottom: 20px; box-sizing: border-box; outline: none;
         }
-        input:focus { background: rgba(212, 175, 55, 0.1); }
-        
         .btn-cek { 
             width: 100%; background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%); 
-            color: var(--black); padding: 18px; border: none; border-radius: 15px; font-size: 15px; font-weight: 800; cursor: pointer; transition: 0.3s;
+            color: var(--black); padding: 18px; border: none; border-radius: 15px; font-size: 15px; font-weight: 800; cursor: pointer;
         }
-        .btn-cek:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
         
-        /* HASIL STYLE */
         #hasil-wrapper { display: none; }
         .info-siswa { background: rgba(255,255,255,0.1); border-radius: 20px; padding: 20px; margin-bottom: 20px; border-left: 5px solid var(--gold); }
         .label { font-size: 10px; color: var(--gold); font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 3px; }
@@ -70,13 +61,8 @@
         <p style="font-size: 11px; color: #aaa; margin-top: 5px; font-weight: 600;">SMAN 1 CIKALONGWETAN</p>
     </div>
 
-    <div id="timer-container">
-        <span class="timer-text">PENGUMUMAN AKAN DIBUKA DALAM:</span>
-        <div id="countdown">Memuat Timer...</div>
-    </div>
-
     <div class="content">
-        <div id="form-pencarian" style="display:none;">
+        <div id="form-pencarian">
             <input type="text" id="nisn-siswa" placeholder="MASUKKAN 10 DIGIT NISN">
             <button class="btn-cek" onclick="cekMapel()">LIHAT HASIL SEKARANG</button>
         </div>
@@ -93,34 +79,6 @@
 </div>
 
 <script>
-    // ==========================================
-    // 1. ATUR JADWAL BUKA DI SINI
-    // Format: "Month Date, Year Hour:Minute:Second"
-    // Contoh: "May 10, 2026 08:00:00"
-    // ==========================================
-    const waktuTujuan = new Date("May 10, 2026 08:00:00").getTime();
-
-    const hitungMundur = setInterval(function() {
-        const sekarang = new Date().getTime();
-        const selisih = waktuTujuan - sekarang;
-
-        // Hitung Hari, Jam, Menit, Detik
-        const d = Math.floor(selisih / (1000 * 60 * 60 * 24));
-        const h = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((selisih % (1000 * 60)) / 1000);
-
-        document.getElementById("countdown").innerHTML = d + "h " + h + "j " + m + "m " + s + "s ";
-
-        // Jika waktu habis
-        if (selisih < 0) {
-            clearInterval(hitungMundur);
-            document.getElementById("timer-container").style.display = "none";
-            document.getElementById("form-pencarian").style.display = "block";
-        }
-    }, 1000);
-
-    // Fungsi Cek ke Google Sheets
     async function cekMapel() {
         const nisn = document.getElementById('nisn-siswa').value;
         const url = "https://script.google.com/macros/s/AKfycbyueUEVB9637tN4iH2GULYaca0mUaCryFLRmg5QcQi87xw8D8dOTsoqS9tr51dmkDgO/exec"; 
@@ -149,10 +107,10 @@
                 });
                 document.getElementById('hasil-wrapper').style.display = "block";
             } else { 
-                alert("NISN " + nisn + " tidak ditemukan. Pastikan nomor sudah benar."); 
+                alert("Data tidak ditemukan."); 
             }
         } catch (e) { 
-            alert("Gagal terhubung ke server. Periksa koneksi internet."); 
+            alert("Gagal terhubung ke server."); 
         }
     }
 </script>
